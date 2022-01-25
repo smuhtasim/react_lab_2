@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import Timer from './Components/Timer'
 import { TimerContext } from './Context/TimerContext';
 
@@ -12,8 +12,9 @@ export default function TimerList(){
     const changeAddButtonStatus = () => {
         setAddButton(!addButton)
     }
-    const FormDataChange = (f) => {
-        setFormData({...formData, [f.target.name]: f.target.value})
+    const FormDataChange = (e) => {
+        setFormData({...formData, [e.target.name]: e.target.value})
+        console.log(e.target.value)
     }
     const createTimerOnClick = () => {
         changeAddButtonStatus()
@@ -40,8 +41,8 @@ export default function TimerList(){
             <form>
                 <label>Title</label>
                 <textarea name = {"title"} value = {formData.title} onChange = {FormDataChange}></textarea>
-                <label>Project</label>
-                <textarea name = {"project"} value = {formData.body} onChange = {FormDataChange}></textarea>
+                <label>Body</label>
+                <textarea name = {"body"} value = {formData.body} onChange = {FormDataChange}></textarea>
                 <button onClick = {createTimerOnClick}>Create</button>
                 <button onClick = {cancelTimerOnClick}>Cancel</button>
             </form>
